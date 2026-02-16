@@ -1,0 +1,32 @@
+package com.localstore.util;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class DBConnection {
+
+    private static final String URL =
+        "jdbc:mysql://localhost:3306/local_store_db";
+
+    private static final String USER = "root";
+    private static final String PASSWORD = "root"; 
+
+    public static Connection getConnection() {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            Connection con = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/local_store_db",
+                "root",
+                "root"   
+            );
+
+            System.out.println("✅ CONNECTED TO DATABASE: " + con.getCatalog());
+            return con;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+}
